@@ -116,10 +116,10 @@ $(document).ready(function(){
 	
 });
 
-
+/*
 // ==========  START GOOGLE MAP ========== //
 function initialize() {
-    var myLatLng = new google.maps.LatLng(22.402789, 91.822156);
+    var myLatLng = new google.maps.LatLng(51.025461, 13.723109);
 
     var mapOptions = {
         zoom: 14,
@@ -149,3 +149,4 @@ function initialize() {
 
 google.maps.event.addDomListener(window, "load", initialize);
 // ========== END GOOGLE MAP ========== //
+*/
