@@ -369,16 +369,75 @@ section .container {
 }
 
 .section-title h2 {
-  font-size: 14px;
-  font-weight: 500;
-  padding: 0;
-  line-height: 1px;
-  margin: 0 0 20px 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #aaaaaa;
-  font-family: "Poppins", sans-serif;
+  position: relative;
+  color: transparent;
+  -webkit-animation: text-animation 1.5s linear;
+  -moz-animation: text-animation 1.5s linear;
+  -o-animation: text-animation 1.5s linear;
+  -ms-animation: text-animation 1.5s linear;
+  animation: text-animation 1.5s linear;
 }
+
+@-webkit-keyframes text-animation {
+  0% {
+    color: transparent;
+  }
+  50% {
+    color: #4ceb95;
+  }
+  100% {
+    color: transparent;
+  }
+}
+
+@-moz-keyframes text-animation {
+  0% {
+    color: transparent;
+  }
+  50% {
+    color: #4ceb95;
+  }
+  100% {
+    color: transparent;
+  }
+}
+
+@-o-keyframes text-animation {
+  0% {
+    color: transparent;
+  }
+  50% {
+    color: #4ceb95;
+  }
+  100% {
+    color: transparent;
+  }
+}
+
+@-ms-keyframes text-animation {
+  0% {
+    color: transparent;
+  }
+  50% {
+    color: #4ceb95;
+  }
+  100% {
+    color: transparent;
+  }
+}
+
+@keyframes text-animation {
+  0% {
+    color: transparent;
+  }
+  50% {
+    color: #4ceb95;
+  }
+  100% {
+    color: transparent;
+  }
+}
+
 
 .section-title h2::after {
   content: "";
