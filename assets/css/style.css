@@ -369,72 +369,45 @@ section .container {
 }
 
 .section-title h2 {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0;
+  line-height: 1px;
+  margin: 0 0 20px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaaaaa;
+  font-family: "Poppins", sans-serif;
+  /* Add the following lines to create the animation */
   position: relative;
-  color: transparent;
-  -webkit-animation: text-animation 1.5s linear;
-  -moz-animation: text-animation 1.5s linear;
-  -o-animation: text-animation 1.5s linear;
-  -ms-animation: text-animation 1.5s linear;
-  animation: text-animation 1.5s linear;
+  animation: animate 1s linear forwards;
 }
 
-@-webkit-keyframes text-animation {
-  0% {
-    color: transparent;
-  }
-  50% {
-    color: #4ceb95;
-  }
-  100% {
-    color: transparent;
-  }
+.section-title h2::after {
+  content: "";
+  width: 120px;
+  height: 1px;
+  display: inline-block;
+  background: #4ceb95;
+  margin: 4px 10px;
+  /* Add the following lines to create the animation */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: animate 1s linear forwards;
 }
 
-@-moz-keyframes text-animation {
+/* Add this keyframe to define the animation */
+@keyframes animate {
   0% {
-    color: transparent;
+    color: #aaaaaa;
   }
   50% {
-    color: #4ceb95;
+    color: transparent;
   }
   100% {
-    color: transparent;
-  }
-}
-
-@-o-keyframes text-animation {
-  0% {
-    color: transparent;
-  }
-  50% {
-    color: #4ceb95;
-  }
-  100% {
-    color: transparent;
-  }
-}
-
-@-ms-keyframes text-animation {
-  0% {
-    color: transparent;
-  }
-  50% {
-    color: #4ceb95;
-  }
-  100% {
-    color: transparent;
-  }
-}
-
-@keyframes text-animation {
-  0% {
-    color: transparent;
-  }
-  50% {
-    color: #4ceb95;
-  }
-  100% {
-    color: transparent;
+    color: #aaaaaa;
   }
 }
 
