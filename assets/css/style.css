@@ -96,6 +96,20 @@ h6 {
   color: #fff;
   border-bottom: 2px solid #18d26e;
   padding-bottom: 6px;
+  position: relative;
+  animation: animate 1s linear forwards;
+}
+
+@keyframes animate {
+  0% {
+    color: #aaaaaa;
+  }
+  50% {
+    color: transparent;
+  }
+  100% {
+    color: #aaaaaa;
+  }
 }
 
 #header img {
@@ -378,9 +392,6 @@ section .container {
   text-transform: uppercase;
   color: #aaaaaa;
   font-family: "Poppins", sans-serif;
-  /* Add the following lines to create the animation */
-  position: relative;
-  animation: animate 1s linear forwards;
 }
 
 .section-title h2::after {
@@ -390,25 +401,6 @@ section .container {
   display: inline-block;
   background: #4ceb95;
   margin: 4px 10px;
-  /* Add the following lines to create the animation */
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  animation: animate 1s linear forwards;
-}
-
-/* Add this keyframe to define the animation */
-@keyframes animate {
-  0% {
-    color: #aaaaaa;
-  }
-  50% {
-    color: transparent;
-  }
-  100% {
-    color: #aaaaaa;
-  }
 }
 
 .section-title p {
