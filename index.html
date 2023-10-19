@@ -826,6 +826,7 @@
                     console.log(data);  // Dies wird die Daten in der Konsole anzeigen
                     var repoCount = data.length;
                     setCounterValue(repoCount);
+                    console.log(storedRepoCount);  // Dies wird den gespeicherten Wert in der Konsole anzeigen
                     
                     // Speichern Sie den Wert und den aktuellen Zeitstempel im localStorage
                     localStorage.setItem('githubRepoCount', repoCount);
