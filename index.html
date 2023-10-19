@@ -823,10 +823,8 @@
                 url: 'https://api.github.com/users/' + githubUsername + '/repos',
                 method: 'GET',
                 success: function(data) {
-                    console.log(data);  // Dies wird die Daten in der Konsole anzeigen
-                    var repoCount = data.length;
+                    var repoCount = (Array.isArray(data) && typeof data.length === 'number') ? data.length : 0;
                     setCounterValue(repoCount);
-                    console.log(storedRepoCount);  // Dies wird den gespeicherten Wert in der Konsole anzeigen
                     
                     // Speichern Sie den Wert und den aktuellen Zeitstempel im localStorage
                     localStorage.setItem('githubRepoCount', repoCount);
