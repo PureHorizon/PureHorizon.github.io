@@ -823,6 +823,7 @@
                 url: 'https://api.github.com/users/' + githubUsername + '/repos',
                 method: 'GET',
                 success: function(data) {
+                    console.log(data);  // Dies wird die Daten in der Konsole anzeigen
                     var repoCount = data.length;
                     setCounterValue(repoCount);
                     
