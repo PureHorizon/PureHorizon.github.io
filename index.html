@@ -816,7 +816,7 @@
     
         // Wenn es Werte gibt und sie weniger als eine Stunde alt sind, verwenden Sie sie
         if (storedRepoCount && storedTimestamp && (currentTime - storedTimestamp < 3600000)) {
-            setCounterValue(storedRepoCount);
+            setCounterValue(Number(storedRepoCount));
         } else {
             // Andernfalls führen Sie die API-Anfrage aus
             $.ajax({
