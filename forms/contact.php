@@ -1,48 +1,41 @@
 <?php
+  /**
+  * Requires the "PHP Email Form" library
+  * The "PHP Email Form" library is available only in the pro version of the template
+  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
+  * For more info and help: https://bootstrapmade.com/php-email-form/
+  */
 
-// Empfange die Formulardaten über die POST-Methode
-$name = $_POST['name'];
-$email = $_POST['email'];
-$subject = $_POST['subject'];
-$message = $_POST['message'];
-$recaptcha = $_POST['recaptcha-response'];
+  // Replace contact@example.com with your real receiving email address
+  $receiving_email_address = 'wagner.luca@hotmail.com';
 
-// Überprüfe, ob alle benötigten Felder ausgefüllt wurden
-if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-  echo "Bitte fülle alle benötigten Felder aus.";
-  exit;
-}
+  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
+    include( $php_email_form );
+  } else {
+    die( 'Unable to load the "PHP Email Form" Library!');
+  }
 
-// Überprüfe, ob die eingegebene E-Mail-Adresse gültig ist
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  echo "Bitte gib eine gültige E-Mail-Adresse ein.";
-  exit;
-}
+  $contact = new PHP_Email_Form;
+  $contact->ajax = true;
+  
+  $contact->to = $receiving_email_address;
+  $contact->from_name = $_POST['name'];
+  $contact->from_email = $_POST['email'];
+  $contact->subject = $_POST['subject'];
 
-// Überprüfe, ob das reCaptcha korrekt ausgefüllt wurde
-$secret = 'DEINE_SECRET_KEY';
-$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$recaptcha}");
-$response = json_decode($response, true);
+  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
+  /*
+  $contact->smtp = array(
+    'host' => 'example.com',
+    'username' => 'example',
+    'password' => 'pass',
+    'port' => '587'
+  );
+  */
 
-if ($response['success'] === false) {
-  echo "Bitte bestätige, dass du kein Roboter bist.";
-  exit;
-}
+  $contact->add_message( $_POST['name'], 'From');
+  $contact->add_message( $_POST['email'], 'Email');
+  $contact->add_message( $_POST['message'], 'Message', 10);
 
-// Setze den Betreff der E-Mail
-$subject = "[Kontaktanfrage] {$subject}";
-
-// Setze den Inhalt der E-Mail
-$body = "Von: {$name}\nE-Mail: {$email}\nNachricht:\n{$message}";
-
-// Setze den Absender der E-Mail
-$headers = "From: {$name} <{$email}>";
-
-// Sende die E-Mail
-if (mail('contact@example.com', $subject, $body, $headers)) {
-  echo 'OK';
-} else {
-  echo "Beim Versenden der E-Mail ist ein Fehler aufgetreten.";
-}
-
+  echo $contact->send();
 ?>
