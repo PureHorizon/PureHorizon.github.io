@@ -901,57 +901,54 @@
     $(document).ready(function () {
       var githubUsername = 'PureHorizon';
 
-      function setCounterValue(repoCount) {
+      function setProjectsCounterValue(repoCount) {
         $('.projects-counter').attr('data-purecounter-end', repoCount);
       }
 
-      function setLanguagesCounterValue(languageCount) {
-        $('.languages-counter').attr('data-purecounter-end', languageCount);
+      function setLanguagesCounterValue(languagesCount) {
+        $('.languages-counter').attr('data-purecounter-end', languagesCount);
       }
 
-      // Überprüfen Sie, ob es einen gespeicherten Wert und Zeitstempel für die Repo-Zählung gibt
+      // Überprüfen Sie, ob es einen gespeicherten Wert und Zeitstempel gibt
       var storedRepoCount = localStorage.getItem('githubRepoCount');
+      var storedLanguagesCount = localStorage.getItem('githubLanguagesCount');
       var storedTimestamp = localStorage.getItem('githubRepoTimestamp');
       var currentTime = new Date().getTime();
 
-      if (storedRepoCount && storedTimestamp && (currentTime - storedTimestamp < 3600000)) {
-        setCounterValue(Number(storedRepoCount));
+      if (storedRepoCount && storedLanguagesCount && storedTimestamp && (currentTime - storedTimestamp < 3600000)) {
+        setProjectsCounterValue(Number(storedRepoCount));
+        setLanguagesCounterValue(Number(storedLanguagesCount));
       } else {
+        // API-Anfrage ausführen
         $.ajax({
           url: 'https://api.github.com/users/' + githubUsername + '/repos',
           method: 'GET',
           success: function (repos) {
-            var repoCount = (Array.isArray(repos) && typeof repos.length === 'number') ? repos.length : 0;
-            setCounterValue(repoCount);
+            var repoCount = repos.length;
+            setProjectsCounterValue(repoCount);
+            var languagesPromises = repos.map(function (repo) {
+              return $.get(repo.languages_url);
+            });
 
-            // Speichern Sie den Wert und den aktuellen Zeitstempel im localStorage
-            localStorage.setItem('githubRepoCount', repoCount.toString());
-            localStorage.setItem('githubRepoTimestamp', currentTime);
-
-            // Sprachenzählung
-            var uniqueLanguages = new Set();
-            var pendingRequests = repos.length;
-            repos.forEach(function (repo) {
-              $.ajax({
-                url: repo.languages_url,
-                method: 'GET',
-                success: function (languages) {
-                  for (var language in languages) {
-                    uniqueLanguages.add(language);
-                  }
-                  pendingRequests--;
-                  if (pendingRequests === 0) {
-                    setLanguagesCounterValue(uniqueLanguages.size);
-                  }
-                },
-                error: function () {
-                  console.error('Fehler beim Abrufen der Sprachen für das Repository', repo.name);
+            // Fetch all languages from the repositories
+            Promise.all(languagesPromises).then(function (languagesArrays) {
+              var allLanguages = {};
+              languagesArrays.forEach(function (languages) {
+                for (var lang in languages) {
+                  allLanguages[lang] = true;
                 }
               });
+              var uniqueLanguagesCount = Object.keys(allLanguages).length;
+              setLanguagesCounterValue(uniqueLanguagesCount);
+
+              // Speichern Sie den Wert und den aktuellen Zeitstempel im localStorage
+              localStorage.setItem('githubRepoCount', repoCount.toString());
+              localStorage.setItem('githubLanguagesCount', uniqueLanguagesCount.toString());
+              localStorage.setItem('githubRepoTimestamp', currentTime);
             });
           },
           error: function () {
-            console.error('Fehler beim Abrufen der GitHub-Repository-Anzahl');
+            console.error('Fehler beim Abrufen der GitHub-Repository-Anzahl oder Sprachen');
           }
         });
       }
