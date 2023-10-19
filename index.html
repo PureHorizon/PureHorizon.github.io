@@ -800,23 +800,44 @@
   <script src="assets/js/main.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+  <!-- adaptives Anpassen der Projektzahl an die Anzahl der GitHub Repositories -->
   <script>
     $(document).ready(function() {
         var githubUsername = PureHorizon;
         
-        $.ajax({
-            url: 'https://api.github.com/users/' + githubUsername + '/repos',
-            method: 'GET',
-            success: function(data) {
-                var repoCount = data.length;
-                $('.purecounter').attr('data-purecounter-end', repoCount);
-            },
-            error: function() {
-                console.error('Fehler beim Abrufen der GitHub-Repository-Anzahl');
-            }
-        });
+        function setCounterValue(repoCount) {
+            $('.purecounter').attr('data-purecounter-end', repoCount);
+        }
+    
+        // Überprüfen Sie, ob es einen gespeicherten Wert und Zeitstempel gibt
+        var storedRepoCount = localStorage.getItem('githubRepoCount');
+        var storedTimestamp = localStorage.getItem('githubRepoTimestamp');
+        var currentTime = new Date().getTime();
+    
+        // Wenn es Werte gibt und sie weniger als eine Stunde alt sind, verwenden Sie sie
+        if (storedRepoCount && storedTimestamp && (currentTime - storedTimestamp < 3600000)) {
+            setCounterValue(storedRepoCount);
+        } else {
+            // Andernfalls führen Sie die API-Anfrage aus
+            $.ajax({
+                url: 'https://api.github.com/users/' + githubUsername + '/repos',
+                method: 'GET',
+                success: function(data) {
+                    var repoCount = data.length;
+                    setCounterValue(repoCount);
+                    
+                    // Speichern Sie den Wert und den aktuellen Zeitstempel im localStorage
+                    localStorage.setItem('githubRepoCount', repoCount);
+                    localStorage.setItem('githubRepoTimestamp', currentTime);
+                },
+                error: function() {
+                    console.error('Fehler beim Abrufen der GitHub-Repository-Anzahl');
+                }
+            });
+        }
     });
-    </script>    
+    </script>
+       
 
 
 </body>
