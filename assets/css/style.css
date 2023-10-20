@@ -494,7 +494,7 @@ section .container {
 }
 
 .icon {
-  margin-right: 20px; /* Abstand zwischen Icon und Text */
+  margin-right: 15px; /* Abstand zwischen Icon und Inhalt */
 }
 
 .icon i {
@@ -512,14 +512,21 @@ section .container {
   transform: translateY(-10px);
 }
 
-/* Responsiveness: Anpassungen für kleine Bildschirme */
-@media only screen and (max-width: 768px) {
+h4 {
+  margin: 0; /* Entfernt den oberen und unteren Abstand */
+  font-size: 1.2em; /* Verkleinert die Schriftgröße */
+}
+
+/* Responsivität für kleinere Geräte */
+@media (max-width: 768px) {
   .icon-box {
-      flex-direction: column; /* Stellt die Elemente untereinander dar */
+      flex-direction: column; /* Ändert die Anordnung von horizontal zu vertikal */
+      align-items: flex-start; /* Startet die Elemente am linken Rand */
   }
+  
   .icon {
-      margin-right: 0;
-      margin-bottom: 15px; /* Abstand zwischen Icon und Text auf kleinen Bildschirmen */
+      margin-bottom: 10px; /* Abstand zwischen Icon und Inhalt auf kleineren Geräten */
+      margin-right: 0; /* Entfernt den horizontalen Abstand auf kleineren Geräten */
   }
 }
 
