@@ -485,35 +485,42 @@ section .container {
 }
 
 .icon-box {
-  background-color: #333; /* Dunkle Hintergrundfarbe entsprechend Ihrem Bild */
-  border-radius: 15px; /* Runde Ecken */
-  padding: 20px; /* Abstand innen */
-  transition: all 0.3s ease-in-out; /* Sanfte Übergänge für den Hover-Effekt */
+  display: flex; /* Flexbox verwenden */
+  align-items: center; /* Vertikales Zentrieren der Inhalte */
+  background-color: #333;
+  border-radius: 15px;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
-.icon-box i {
-  background-color: #1a1a1a;  /* Hintergrundfarbe des Icons */
-  border-radius: 50%;  /* Kreisform */
-  padding: 15px;  /* Abstand zum Icon */
-  box-sizing: border-box;  /* Um sicherzustellen, dass das Padding nicht die Gesamtgröße des Elements erhöht */
+.icon {
+  margin-right: 20px; /* Abstand zwischen Icon und Text */
+}
+
+.icon i {
+  background-color: #1a1a1a;
+  border-radius: 50%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.content {
+  flex-grow: 1; /* Lässt den Textbereich wachsen und den verfügbaren Platz nutzen */
 }
 
 .icon-box:hover {
-  transform: translateY(-10px); /* leichtes Anheben */
+  transform: translateY(-10px);
 }
 
-/* Hintergrund für das Icon */
-.icon-background {
-  display: inline-block; /* Damit der Rand und der Hintergrund angewendet werden können */
-  background-color: #1a1a1a; /* Hintergrundfarbe des Icons */
-  border-radius: 50%; /* Kreisform */
-  padding: 10px; /* Abstand zum Icon */
-  margin-right: 10px; /* Abstand zwischen dem Icon und dem Text */
-}
-
-/* Stil des Icons (wenn benötigt) */
-.icon-background i {
-  font-size: 1.5em; /* Ändern Sie die Größe des Icons nach Bedarf */
+/* Responsiveness: Anpassungen für kleine Bildschirme */
+@media only screen and (max-width: 768px) {
+  .icon-box {
+      flex-direction: column; /* Stellt die Elemente untereinander dar */
+  }
+  .icon {
+      margin-right: 0;
+      margin-bottom: 15px; /* Abstand zwischen Icon und Text auf kleinen Bildschirmen */
+  }
 }
 
 
