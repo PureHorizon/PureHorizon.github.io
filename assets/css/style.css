@@ -485,14 +485,26 @@ section .container {
 }
 
 .icon-box {
-  background-color: #333; /* Dunkle Hintergrundfarbe entsprechend Ihrem Bild */
-  border-radius: 15px; /* Runde Ecken */
-  padding: 20px; /* Abstand innen */
-  transition: all 0.3s ease-in-out; /* Sanfte Übergänge für den Hover-Effekt */
+  background-color: #1a1a1a;  /* Dunkler Hintergrund */
+  border-radius: 5px;  /* Abgerundete Ecken */
+  padding: 20px;  /* Innenabstand */
+  transition: transform 0.3s;  /* Sanfter Übergang beim Hover */
 }
 
+.icon-box i {
+  background-color: #333;  /* Dunklerer Hintergrund als die Box */
+  border-radius: 50%;  /* Kreisförmige Umrandung */
+  padding: 20px;  /* Abstand zum Icon */
+  border: 2px solid #47aeff;  /* Blauer Rand */
+}
+
+/* Hover-Effekt für Icon-Box */
 .icon-box:hover {
-  transform: translateY(-10px); /* leichtes Anheben */
+  transform: translateY(-10px);  /* Anheben */
+}
+
+.icon-box:hover i {
+  background-color: #1a1a1a;  /* Hintergrundfarbe beim Hover ändern */
 }
 
 .icon-box:hover .icon-circle i {
