@@ -495,6 +495,21 @@ section .container {
   transform: translateY(-10px); /* leichtes Anheben */
 }
 
+/* Hintergrund für das Icon */
+.icon-background {
+  display: inline-block; /* Damit der Rand und der Hintergrund angewendet werden können */
+  background-color: #1a1a1a; /* Hintergrundfarbe des Icons */
+  border-radius: 50%; /* Kreisform */
+  padding: 10px; /* Abstand zum Icon */
+  margin-right: 10px; /* Abstand zwischen dem Icon und dem Text */
+}
+
+/* Stil des Icons (wenn benötigt) */
+.icon-background i {
+  font-size: 1.5em; /* Ändern Sie die Größe des Icons nach Bedarf */
+}
+
+
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
