@@ -484,9 +484,31 @@ section .container {
   transition: transform 0.3s ease;  /* sanfter Übergang */
 }
 
+.icon-box {
+  background-color: #333; /* Dunkle Hintergrundfarbe entsprechend Ihrem Bild */
+  border-radius: 15px; /* Runde Ecken */
+  padding: 20px; /* Abstand innen */
+  transition: all 0.3s ease-in-out; /* Sanfte Übergänge für den Hover-Effekt */
+}
+
 .icon-box:hover {
-  transform: translateY(-10px);
-  transition: all 0.3s ease-in-out;
+  transform: translateY(-10px); /* leichtes Anheben */
+}
+
+.icon-box:hover .icon-circle i {
+  transform: scale(1.2); /* Vergrößert das Icon leicht beim Hover */
+}
+
+.icon-circle {
+  background-color: #555; /* Ein etwas hellerer Farbton für den Kreis */
+  border: 2px solid #47aeff; /* Farbe des Randes um den Kreis - kann angepasst werden */
+  border-radius: 50%; /* Macht den Kreis rund */
+  width: 60px; /* Durchmesser des Kreises */
+  height: 60px;
+  display: flex; /* Zentriert das Icon innerhalb des Kreises */
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px; /* Abstand zwischen Kreis und Text darunter */
 }
 
 /*--------------------------------------------------------------
