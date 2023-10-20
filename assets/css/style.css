@@ -511,6 +511,10 @@ section .container {
   margin-bottom: 10px; /* Abstand zwischen Kreis und Text darunter */
 }
 
+.competency-description {
+  font-size: 0.9em;  /* Verkleinert die Schriftgröße */
+}
+
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
