@@ -485,7 +485,7 @@ section .container {
 }
 
 .icon-box {
-  background-color: #333; /* Dunkle Hintergrundfarbe entsprechend Ihrem Bild */
+  background-color: #141414; /* Dunkle Hintergrundfarbe entsprechend Ihrem Bild */
   border-radius: 15px; /* Runde Ecken */
   padding: 20px; /* Abstand innen */
   transition: all 0.3s ease-in-out; /* Sanfte Übergänge für den Hover-Effekt */
