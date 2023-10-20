@@ -485,10 +485,17 @@ section .container {
 }
 
 .icon-box {
-  background-color: #141414; /* Dunkle Hintergrundfarbe entsprechend Ihrem Bild */
+  background-color: #333; /* Dunkle Hintergrundfarbe entsprechend Ihrem Bild */
   border-radius: 15px; /* Runde Ecken */
   padding: 20px; /* Abstand innen */
   transition: all 0.3s ease-in-out; /* Sanfte Übergänge für den Hover-Effekt */
+}
+
+.icon-box i {
+  background-color: #1a1a1a;  /* Hintergrundfarbe des Icons */
+  border-radius: 50%;  /* Kreisform */
+  padding: 15px;  /* Abstand zum Icon */
+  box-sizing: border-box;  /* Um sicherzustellen, dass das Padding nicht die Gesamtgröße des Elements erhöht */
 }
 
 .icon-box:hover {
