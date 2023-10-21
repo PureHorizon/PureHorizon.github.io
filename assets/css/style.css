@@ -521,16 +521,21 @@ h4 {
 
 /* Responsivität für kleinere Geräte */
 @media (max-width: 768px) {
-    .icon-box {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto; /* Automatische Höhe für kleinere Geräte */
-    }
-    
-    .icon {
-        margin-bottom: 10px;
-        margin-right: 0;
-    }
+  .icon-box {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto; /* Automatische Höhe für kleinere Geräte */
+  }
+  
+  .icon {
+      margin-bottom: 10px;
+      margin-right: 0;
+  }
+  
+  /* Verringern des Abstands zwischen den Blöcken "Interests" und "Relevant Courses" */
+  .skills-content:nth-of-type(2) { 
+      margin-top: 10px; /* oder den gewünschten Wert einsetzen */
+  }
 }
 
 
